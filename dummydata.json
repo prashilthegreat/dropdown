@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "name": "Prashil",
+            "age": 21
+        },
+        {
+            "name": "Ritiz",
+            "age": 21
+        },
+        {
+            "name": "Samar",
+            "age": 21
+        },
+        {
+            "name": "Prastut",
+            "age": 21
+        },
+        {
+            "name": "Harihar",
+            "age": 21
+        },
+        {
+            "name": "Shyam",
+            "age": 21
+        }
+    ]
+}
