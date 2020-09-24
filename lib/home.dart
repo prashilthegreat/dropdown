@@ -9,22 +9,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var dataList = List();
+  var stationNameList = List();
+  var stationIDList = List();
   var isSelected = false;
   Future getData() async {
-    final url =
-        "https://raw.githubusercontent.com/prashilthegreat/jsonhoster/master/dummydata.json";
-    var subjectList;
-    final response = await http.get(url);
+    final url = "http://purba.buzzmedianepal.com/api";
+    var latitude = 27.6840464992;
+    var longitude = 85.3405647029;
+    var nearestStationsList;
+    var response = await http.get("$url/index", headers: {
+      "x-header-latitude": "$latitude",
+      "x-header-longitude": "$longitude"
+    });
     if (response.statusCode == 200) {
       var map = jsonDecode(response.body);
-      subjectList = map['data'];
-      for (var item in subjectList) {
+      nearestStationsList = map['nearest_stations'];
+      for (var item in nearestStationsList) {
+        print(item['station_name']);
         setState(() {
-          dataList.add(item['name']);
+          stationNameList.add(item['station_name']);
+          stationIDList.add(item['station_id']);
         });
       }
-      return dataList;
+      return stationNameList;
     }
   }
 
@@ -47,7 +54,8 @@ class _HomePageState extends State<HomePage> {
             hint: "Select any",
             underline: Container(),
             value: selectedValue,
-            items: dataList.map((item) {
+            isCaseSensitiveSearch: false,
+            items: stationNameList.map((item) {
               return DropdownMenuItem(
                 child: Text(item),
                 value: item,
