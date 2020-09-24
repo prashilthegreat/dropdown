@@ -63,6 +63,8 @@ class _HomePageState extends State<HomePage> {
             }).toList(),
             onChanged: (val) {
               selectedValue = val;
+              print(selectedValue);
+              print(stationIDList[stationNameList.indexOf(selectedValue)]);
             },
           ),
         ),
